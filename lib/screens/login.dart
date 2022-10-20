@@ -153,9 +153,9 @@ class _LoginState extends State<Login> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      if (FirebaseAuth.instance.currentUser!.emailVerified) {
-        await sendEmailVerification(context);
-      }
+      // if (!FirebaseAuth.instance.currentUser!.emailVerified) {
+      //   await sendEmailVerification(context);
+      // }
     } on FirebaseAuthException catch (e) {
       print(e);
       showSnackBar(context, e.message!);
@@ -163,12 +163,14 @@ class _LoginState extends State<Login> {
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
-  Future<void> sendEmailVerification(BuildContext context) async {
-    try {
-      FirebaseAuth.instance.currentUser!.sendEmailVerification();
-      showSnackBar(context, 'Email verification sent!');
-    } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!);
-    }
-  }
+// EMAIL VERIFICATION TO BE WORKED UPON ----------------
+
+//   Future<void> sendEmailVerification(BuildContext context) async {
+//     try {
+//       FirebaseAuth.instance.currentUser!.sendEmailVerification();
+//       showSnackBar(context, 'Email verification sent!');
+//     } on FirebaseAuthException catch (e) {
+//       showSnackBar(context, e.message!);
+//     }
+//   }
 }

@@ -108,7 +108,7 @@ class _SignupState extends State<Signup> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     value != null && value != _passwordController
-                        ? 'Password doesn\'t match;'
+                        ? 'Password doesn\'t match'
                         : null;
                   },
                 ),
@@ -179,7 +179,7 @@ class _SignupState extends State<Signup> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      await sendEmailVerification(context);
+      // await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
       print(e);
       showSnackBar(context, e.message!);
@@ -187,12 +187,14 @@ class _SignupState extends State<Signup> {
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
-  Future<void> sendEmailVerification(BuildContext context) async {
-    try {
-      FirebaseAuth.instance.currentUser!.sendEmailVerification();
-      showSnackBar(context, 'Email verification sent!');
-    } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!);
-    }
-  }
+// EMAIL VERIFICATION PART TO BE WORKED UPON
+
+  // Future<void> sendEmailVerification(BuildContext context) async {
+  //   try {
+  //     FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  //     showSnackBar(context, 'Email verification sent!');
+  //   } on FirebaseAuthException catch (e) {
+  //     showSnackBar(context, e.message!);
+  //   }
+  // }
 }
