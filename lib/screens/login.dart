@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously, avoid_print
 
 import 'package:collegeproject/main.dart';
+import 'package:collegeproject/screens/forgetPassword.dart';
 import 'package:collegeproject/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -84,6 +85,32 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(
                   height: 20.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgetPassword(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Forget Password?',
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10.0,
                 ),
                 SizedBox(
                   width: double.infinity,

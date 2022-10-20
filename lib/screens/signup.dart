@@ -54,9 +54,9 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 2.0,
                 ),
-                Text("Let's get started ♥",
+                Text("Let's get all set up! ♥",
                     style: GoogleFonts.poppins(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
@@ -88,7 +88,7 @@ class _SignupState extends State<Signup> {
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Enter your email',
+                    hintText: 'Enter your password',
                     hintStyle: TextStyle(color: Colors.grey),
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Colors.grey),
