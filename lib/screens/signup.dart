@@ -45,11 +45,22 @@ class _SignupState extends State<Signup> {
                 SizedBox(
                   height: 50.0,
                 ),
-                Text('Create your account',
+                Text(
+                  'Create your account',
+                  style: GoogleFonts.poppins(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Text("Let's get started ♥",
                     style: GoogleFonts.poppins(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey,
                     )),
                 SizedBox(
                   height: 20.0,
@@ -136,7 +147,7 @@ class _SignupState extends State<Signup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Joined us before? ',
+                      'Already have an account? ',
                       style: TextStyle(
                         color: Colors.black54,
                       ),
