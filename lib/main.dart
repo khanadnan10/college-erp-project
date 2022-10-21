@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:collegeproject/firebase_options.dart';
+import 'package:collegeproject/screens/authScreen/emailVerification.dart';
+import 'package:collegeproject/screens/authScreen/login.dart';
 import 'package:collegeproject/screens/home.dart';
-import 'package:collegeproject/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -46,13 +47,13 @@ class MainPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return Home();
+            return EmailVerification();
           } else if (snapshot.hasError) {
             return Center(
               child: Text(
-                'Error 404',
+                '🚧 Error 404',
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 40.0,
                 ),
               ),
             );

@@ -42,7 +42,7 @@ class _SignupState extends State<Signup> {
               crossAxisAlignment: CrossAxisAlignment.start,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50.0,
                 ),
                 Text(
@@ -53,8 +53,8 @@ class _SignupState extends State<Signup> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(
-                  height: 2.0,
+                const SizedBox(
+                  height: 5.0,
                 ),
                 Text("Let's get all set up! ♥",
                     style: GoogleFonts.poppins(
@@ -62,7 +62,7 @@ class _SignupState extends State<Signup> {
                       fontWeight: FontWeight.w400,
                       color: Colors.grey,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 TextFormField(
@@ -117,13 +117,13 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    value != null && value != _passwordController
-                        ? 'Password doesn\'t match'
+                  validator: ((password) {
+                    password != null && password.length < 6
+                        ? 'Enter min. 6 characters'
                         : null;
-                  },
+                  }),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 SizedBox(
@@ -140,7 +140,7 @@ class _SignupState extends State<Signup> {
                     // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40.0,
                 ),
                 Row(
@@ -177,6 +177,7 @@ class _SignupState extends State<Signup> {
   Future signUpAuth() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -197,15 +198,4 @@ class _SignupState extends State<Signup> {
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
-
-// EMAIL VERIFICATION PART TO BE WORKED UPON
-
-  // Future<void> sendEmailVerification(BuildContext context) async {
-  //   try {
-  //     FirebaseAuth.instance.currentUser!.sendEmailVerification();
-  //     showSnackBar(context, 'Email verification sent!');
-  //   } on FirebaseAuthException catch (e) {
-  //     showSnackBar(context, e.message!);
-  //   }
-  // }
 }
