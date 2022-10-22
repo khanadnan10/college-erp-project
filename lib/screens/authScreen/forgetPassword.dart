@@ -36,11 +36,17 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(
+                    height: 100.0,
+                  ),
                   Text(
                     'Reset your password',
                     style: GoogleFonts.poppins(
-                        fontSize: 24.0, fontWeight: FontWeight.w500),
+                        fontSize: 26.0, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 20.0,
                   ),
                   Text(
                     "Enter an email address associated with your account and we'll send you a link to reset your password",
@@ -81,7 +87,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         'Reset Password',
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: kPrimaryColor,
+                        backgroundColor: kHeadingColor,
                       ),
                       // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                     ),
@@ -97,7 +103,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       'Return to login',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        color: kPrimaryColor,
+                        color: kHeadingColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -126,7 +132,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       print(e);
-      showSnackBar(context, e.message!);
+      showSnackBar(context, 'Enter valid email');
       Navigator.of(context).pop();
     }
   }

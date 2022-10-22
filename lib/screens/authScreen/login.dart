@@ -6,7 +6,6 @@ import 'package:collegeproject/screens/authScreen/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../utils/constants.dart';
 import '../../utils/showSnackbar.dart';
@@ -104,7 +103,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             'Forget Password?',
                             style: TextStyle(
-                              color: kPrimaryColor,
+                              color: kHeadingColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -123,7 +122,7 @@ class _LoginState extends State<Login> {
                           'Login',
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: kPrimaryColor,
+                          backgroundColor: kHeadingColor,
                         ),
                         // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                       ),
@@ -152,7 +151,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             'Register',
                             style: TextStyle(
-                              color: kPrimaryColor,
+                              color: kHeadingColor,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -180,6 +179,7 @@ class _LoginState extends State<Login> {
   Future signInAuth() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -188,10 +188,14 @@ class _LoginState extends State<Login> {
       ),
     );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      if (ConnectionState.none == ConnectionState.waiting) {
+        return showSnackBar(context, 'Connect to Internet...');
+      } else {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+      }
       // if (!FirebaseAuth.instance.currentUser!.emailVerified) {
       //   await sendEmailVerification(context);
       // }

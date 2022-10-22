@@ -101,7 +101,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                           'Resend Email',
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: kPrimaryColor,
+                          backgroundColor: kHeadingColor,
                           elevation: 0,
                         ),
                         // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
@@ -117,13 +117,12 @@ class _EmailVerificationState extends State<EmailVerification> {
                         onPressed: () => FirebaseAuth.instance.signOut(),
                         child: Text(
                           'Cancel',
-                          style: GoogleFonts.poppins(color: kPrimaryColor),
+                          style: GoogleFonts.poppins(color: kHeadingColor),
                         ),
                         style: TextButton.styleFrom(
-                          side: const BorderSide(color: kPrimaryColor),
+                          side: const BorderSide(color: kHeadingColor),
                           elevation: 0,
                           backgroundColor: Colors.white,
-                          
                         ),
                         // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                       ),

@@ -135,7 +135,7 @@ class _SignupState extends State<Signup> {
                       'Continue',
                     ),
                     style: TextButton.styleFrom(
-                      backgroundColor: kPrimaryColor,
+                      backgroundColor: kHeadingColor,
                     ),
                     // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                   ),
@@ -159,7 +159,7 @@ class _SignupState extends State<Signup> {
                       child: Text(
                         'Login',
                         style: TextStyle(
-                          color: kPrimaryColor,
+                          color: kHeadingColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -194,7 +194,7 @@ class _SignupState extends State<Signup> {
       // await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
       print(e);
-      showSnackBar(context, e.message!);
+      showSnackBar(context, "Something went wrong. Try again!");
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
