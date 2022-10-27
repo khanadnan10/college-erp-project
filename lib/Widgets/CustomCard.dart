@@ -31,8 +31,7 @@ class CustomeCard extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(8.0),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

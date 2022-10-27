@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             'Forget Password?',
                             style: TextStyle(
-                              color: kHeadingColor,
+                              color: kPrimaryColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                           'Login',
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: kHeadingColor,
+                          backgroundColor: kPrimaryColor,
                         ),
                         // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                       ),
@@ -151,7 +151,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             'Register',
                             style: TextStyle(
-                              color: kHeadingColor,
+                              color: kPrimaryColor,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

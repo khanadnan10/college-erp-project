@@ -88,7 +88,7 @@ class _SignupState extends State<Signup> {
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Enter your password',
+                    hintText: 'Create your password',
                     hintStyle: TextStyle(color: Colors.grey),
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Colors.grey),
@@ -135,7 +135,7 @@ class _SignupState extends State<Signup> {
                       'Continue',
                     ),
                     style: TextButton.styleFrom(
-                      backgroundColor: kHeadingColor,
+                      backgroundColor: kPrimaryColor,
                     ),
                     // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                   ),
@@ -159,7 +159,7 @@ class _SignupState extends State<Signup> {
                       child: Text(
                         'Login',
                         style: TextStyle(
-                          color: kHeadingColor,
+                          color: kPrimaryColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -186,7 +186,7 @@ class _SignupState extends State<Signup> {
       ),
     );
 
-    try {
+    try {   
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),

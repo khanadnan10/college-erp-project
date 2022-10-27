@@ -1,24 +1,24 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
-import 'package:collegeproject/screens/Attendence/attendence.dart';
+import 'package:collegeproject/screens/ListOfStudent/addStudents.dart';
+import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
 import 'package:collegeproject/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../Widgets/CustomDrawer.dart';
-import '../utils/CustomCard.dart';
+import '../Widgets/CustomCard.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
   final user = FirebaseAuth.instance.currentUser!;
-
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoggedIn = true;
 
   @override
@@ -75,6 +75,15 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        backgroundColor: kPrimaryColor,
+        label: Text('Add Student'),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddStudents()));
+        },
+      ),
       drawer: CustomDrawer(),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -92,7 +101,7 @@ class _HomeState extends State<Home> {
                       width: width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        color: kHeadingColor,
+                        color: kProfileCardColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -146,14 +155,14 @@ class _HomeState extends State<Home> {
                         image: Image.asset(
                           'assets/images/attendence.png',
                           fit: BoxFit.cover,
-                          // height: 120.0,
+                          height: 130.0,
                         ),
                         color: kRandomColor1,
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Attendence()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => AddStudents()));
                         },
                       ),
                       CustomeCard(
@@ -161,44 +170,45 @@ class _HomeState extends State<Home> {
                         width: width,
                         image: Image.asset(
                           'assets/images/contract.png',
-                          fit: BoxFit.cover,
-                          // height: 10.0,
+                          height: 130.0,
                         ),
                         text: 'List Of Students',
                         color: kRandomColor2,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ListOfStudents()));
+                        },
                       ),
                     ],
                   ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        margin: const EdgeInsets.all(12.0),
-                        // height: 250,
-                        width: width,
-                        decoration: BoxDecoration(
-                          color: kRandomColor3,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Image.asset(
-                                'assets/images/growth-graph.png',
-                                height: 190.0,
-                              ),
-                              Text(
-                                'Result',
-                                style: const TextStyle(
-                                    fontSize: 16.0,
-                                    overflow: TextOverflow.clip),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.all(12.0),
+                      height: height / 2,
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: kRandomColor3,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.asset(
+                              'assets/images/growth-graph.png',
+                              // height: 190.0,
+                            ),
+                            Text(
+                              'Result',
+                              style: const TextStyle(
+                                  fontSize: 24.0, overflow: TextOverflow.clip),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ),
                     ),

@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../screens/Attendence/attendence.dart';
-
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
     Key? key,
@@ -45,8 +43,8 @@ class CustomDrawer extends StatelessWidget {
               'Attendence',
             ),
             onTap: (() {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Attendence()));
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => const AddStudents()));
             }),
           ),
           ListTile(

@@ -87,7 +87,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         'Reset Password',
                       ),
                       style: TextButton.styleFrom(
-                        backgroundColor: kHeadingColor,
+                        backgroundColor: kPrimaryColor,
                       ),
                       // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                     ),
@@ -103,7 +103,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       'Return to login',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        color: kHeadingColor,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
