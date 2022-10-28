@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collegeproject/Widgets/CustomDrawer.dart';
-import 'package:collegeproject/services/Models/StudentModel.dart';
+import 'package:collegeproject/main.dart';
 import 'package:collegeproject/services/fireStore/StudentFirestore.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +20,8 @@ class _ListOfStudentsState extends State<ListOfStudents> {
 
   CollectionReference studentdata =
       FirebaseFirestore.instance.collection('Students');
+
+  get _refresh => studentdata;
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +80,17 @@ class _ListOfStudentsState extends State<ListOfStudents> {
             );
           }
 
-          final List studentDocs = [];
+          // final List studentDocs = [];
 
-          snapshot.data!.docs.map((e) {
-            Map a = e.data() as Map<String, dynamic>;
-            studentDocs.add(a);
-          }).toList();
+          // snapshot.data!.docs.map((e) {
+          //   Map a = e.data() as Map<String, dynamic>;
+          //   studentDocs.add(a);
+          // }).toList();
 
           if (snapshot.connectionState == ConnectionState.done) {
             return SingleChildScrollView(
-              physics: const ScrollPhysics(),
+              // physics: const BouncingScrollPhysics(),
+              // scrollDirection: Axis.horizontal,
               child: DataTable(
                 columnSpacing: 12.0,
                 horizontalMargin: 12.0,
@@ -105,6 +108,9 @@ class _ListOfStudentsState extends State<ListOfStudents> {
                   DataColumn(
                     label: Expanded(child: Text('Branch')),
                   ),
+                  DataColumn(
+                    label: Expanded(child: Text('Delete')),
+                  ),
                 ],
                 rows: snapshot.data!
                     .docs // Loops through dataColumnText, each iteration assigning the value to element
@@ -115,9 +121,20 @@ class _ListOfStudentsState extends State<ListOfStudents> {
                                 element["name"],
                                 softWrap: true,
                               )), //Extracting from Map element the value
-                              DataCell(Text(
-                                  element["enrollmentNumber".split(' ')[0]])),
-                              DataCell(Text(element["branch"])),
+                              DataCell(
+                                Text(element["enrollmentNumber"]),
+                              ),
+                              DataCell(
+                                Text(element["branch"]),
+                              ),
+                              DataCell(
+                                const Icon(Icons.delete),
+                                onTap: () {
+                                  setState(() {
+                                    studentdata.doc(element.id).delete();
+                                  });
+                                },
+                              ),
                             ],
                           )),
                     )

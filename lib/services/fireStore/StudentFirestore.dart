@@ -9,7 +9,7 @@ class StudentFirestore {
     required String branch,
   }) async {
     final docUser =
-        FirebaseFirestore.instance.collection('Students').doc(enrollmentNumber);
+        FirebaseFirestore.instance.collection('Students').doc();
 
     final user = StudentsModel(
       name: name,

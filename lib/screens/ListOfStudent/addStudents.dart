@@ -176,7 +176,7 @@ class _AddStudentsState extends State<AddStudents> {
                           );
                           showSnackBar(context, 'Student has been Added');
                           clearEntries();
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>

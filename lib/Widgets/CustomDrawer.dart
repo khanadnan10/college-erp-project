@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -24,12 +25,6 @@ class CustomDrawer extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                // Text('Last Login: '+
-                //   DateFormat.jm('en_US').format(DateTime.now()),
-                //   style: const TextStyle(
-                //     color: Colors.grey,
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -56,7 +51,12 @@ class CustomDrawer extends StatelessWidget {
             title: const Text(
               'List Of Students',
             ),
-            onTap: (() {}),
+            onTap: (() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListOfStudents()));
+            }),
           ),
           ListTile(
             leading: Image.asset(
