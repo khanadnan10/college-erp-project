@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Result extends StatelessWidget {
-  const Result({super.key});
+class ResultScreen extends StatelessWidget {
+  const ResultScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,8 +9,8 @@ class Result extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              CircularProgressIndicator(),
+            children: const [
+              Text('Result Page...'),
             ],
           ),
         ),

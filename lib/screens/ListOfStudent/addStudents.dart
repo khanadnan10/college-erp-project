@@ -180,7 +180,7 @@ class _AddStudentsState extends State<AddStudents> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const ListOfStudents()));
+                                      const ListOfStudentsScreen()));
                         } else {
                           showSnackBar(context, 'Incomplete fields');
                         }

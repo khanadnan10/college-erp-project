@@ -127,6 +127,26 @@ class _EmailVerificationState extends State<EmailVerification> {
                         // backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                       ),
                     ),
+                    const SizedBox(
+                      height: 60.0,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.local_post_office,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          'Do check your spam folder',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

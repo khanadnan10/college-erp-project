@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'package:collegeproject/screens/Attendence/attendence.dart';
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
+import 'package:collegeproject/screens/Result/result.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -38,8 +40,8 @@ class CustomDrawer extends StatelessWidget {
               'Attendence',
             ),
             onTap: (() {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => const AddStudents()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AttendenceScreen()));
             }),
           ),
           ListTile(
@@ -55,7 +57,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ListOfStudents()));
+                      builder: (context) => const ListOfStudentsScreen()));
             }),
           ),
           ListTile(
@@ -67,7 +69,12 @@ class CustomDrawer extends StatelessWidget {
             title: const Text(
               'Result',
             ),
-            onTap: (() {}),
+            onTap: (() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ResultScreen()));
+            }),
           ),
         ],
       ),

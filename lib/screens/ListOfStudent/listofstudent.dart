@@ -1,27 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collegeproject/Widgets/CustomDrawer.dart';
-import 'package:collegeproject/main.dart';
 import 'package:collegeproject/services/fireStore/StudentFirestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
 import 'addStudents.dart';
 
-class ListOfStudents extends StatefulWidget {
-  const ListOfStudents({super.key});
+class ListOfStudentsScreen extends StatefulWidget {
+  const ListOfStudentsScreen({super.key});
 
   @override
-  State<ListOfStudents> createState() => _ListOfStudentsState();
+  State<ListOfStudentsScreen> createState() => _ListOfStudentsScreenState();
 }
 
-class _ListOfStudentsState extends State<ListOfStudents> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+class _ListOfStudentsScreenState extends State<ListOfStudentsScreen> {
   StudentFirestore user = StudentFirestore();
 
   CollectionReference studentdata =
       FirebaseFirestore.instance.collection('Students');
-
-  get _refresh => studentdata;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +35,16 @@ class _ListOfStudentsState extends State<ListOfStudents> {
         ),
         backgroundColor: Colors.white,
         elevation: 0.9,
-        leading: IconButton(
-          onPressed: () => scaffoldKey.currentState?.openDrawer(),
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+            );
+          },
         ),
       ),
       drawer: const CustomDrawer(),

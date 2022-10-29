@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
+import 'package:collegeproject/screens/Attendence/attendence.dart';
 import 'package:collegeproject/screens/ListOfStudent/addStudents.dart';
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
+import 'package:collegeproject/screens/Result/result.dart';
 import 'package:collegeproject/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -159,10 +161,11 @@ class _HomeState extends State<Home> {
                         ),
                         color: kRandomColor1,
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => AddStudents()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AttendenceScreen()));
                         },
                       ),
                       CustomeCard(
@@ -178,13 +181,19 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ListOfStudents()));
+                                  builder: (context) =>
+                                      const ListOfStudentsScreen()));
                         },
                       ),
                     ],
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ResultScreen()));
+                    },
                     child: Container(
                       margin: const EdgeInsets.all(12.0),
                       height: height / 2,

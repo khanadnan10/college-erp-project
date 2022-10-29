@@ -39,7 +39,9 @@ class CustomeCard extends StatelessWidget {
                 Text(
                   text,
                   style: const TextStyle(
-                      fontSize: 16.0, overflow: TextOverflow.clip),
+                    fontSize: 16.0,
+                    overflow: TextOverflow.clip,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ],
