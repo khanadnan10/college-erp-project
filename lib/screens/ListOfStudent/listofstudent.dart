@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collegeproject/Widgets/CustomDrawer.dart';
-import 'package:collegeproject/services/fireStore/StudentFirestore.dart';
+import 'package:collegeproject/services/fireStore/StudentDatabase.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
@@ -14,7 +14,7 @@ class ListOfStudentsScreen extends StatefulWidget {
 }
 
 class _ListOfStudentsScreenState extends State<ListOfStudentsScreen> {
-  StudentFirestore user = StudentFirestore();
+  StudentDatabase user = StudentDatabase();
 
   CollectionReference studentdata =
       FirebaseFirestore.instance.collection('Students');

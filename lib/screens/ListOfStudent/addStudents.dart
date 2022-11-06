@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
-import 'package:collegeproject/services/fireStore/StudentFirestore.dart';
+import 'package:collegeproject/services/fireStore/StudentDatabase.dart';
 import 'package:collegeproject/utils/constants.dart';
 import 'package:collegeproject/utils/showSnackbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddStudents extends StatefulWidget {
@@ -20,7 +19,7 @@ class _AddStudentsState extends State<AddStudents> {
   TextEditingController nameController = TextEditingController();
   TextEditingController enrollmentController = TextEditingController();
 
-  final StudentFirestore user = StudentFirestore();
+  final StudentDatabase user = StudentDatabase();
 
   final List<String> branchList = ['CSE', 'EC', 'EX', 'IT'];
 
@@ -106,7 +105,6 @@ class _AddStudentsState extends State<AddStudents> {
                       color: Colors.grey,
                     ),
                   ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: ((value) {
                     if (value!.length > 12) {
                       return 'Enter valid enrollment number';

@@ -41,7 +41,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             onTap: (() {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AttendenceScreen()));
+                  MaterialPageRoute(builder: (context) => AttendenceScreen()));
             }),
           ),
           ListTile(

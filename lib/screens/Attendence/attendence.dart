@@ -1,14 +1,23 @@
 import 'package:collegeproject/Widgets/CustomDrawer.dart';
+import 'package:collegeproject/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class AttendenceScreen extends StatefulWidget {
-  const AttendenceScreen({super.key});
+class AttendenceScreen extends StatelessWidget {
+  AttendenceScreen({super.key});
 
-  @override
-  State<AttendenceScreen> createState() => _AttendenceScreenState();
-}
+  DateTime _initialDate = DateTime.now();
 
-class _AttendenceScreenState extends State<AttendenceScreen> {
+  Future<DateTime?> datePicker(BuildContext context) async {
+    DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1999),
+      lastDate: DateTime(2050),
+    );
+    return date;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +25,7 @@ class _AttendenceScreenState extends State<AttendenceScreen> {
         automaticallyImplyLeading: false,
         title: const Center(
           child: Text(
-            'List of students',
+            'Attendence',
             style: TextStyle(
               color: Colors.black54,
               fontWeight: FontWeight.w500,
@@ -40,11 +49,24 @@ class _AttendenceScreenState extends State<AttendenceScreen> {
       ),
       drawer: const CustomDrawer(),
       body: SafeArea(
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Attendence...'),
+            children: [
+              TextField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Date of attendence ',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  labelText: 'Date',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  prefixIcon: Icon(
+                    Icons.calendar_month,
+                    color: Colors.grey,
+                  ),
+                ),
+                onTap: () => datePicker(context),
+              ),
             ],
           ),
         ),

@@ -13,7 +13,7 @@ class CustomeCard extends StatelessWidget {
 
   final double height;
   final double width;
-  final String text;
+  final Text text;
   final Image image;
   final Color color;
   final Function() onTap;
@@ -25,27 +25,18 @@ class CustomeCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           margin: const EdgeInsets.all(12.0),
-          height: height,
+          height: height / 2,
           width: width,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(8.0),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                image,
-                Text(
-                  text,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    overflow: TextOverflow.clip,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              image,
+              text,
+            ],
           ),
         ),
       ),
