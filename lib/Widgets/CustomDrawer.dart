@@ -3,6 +3,7 @@
 import 'package:collegeproject/screens/Attendence/attendence.dart';
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
 import 'package:collegeproject/screens/Result/result.dart';
+import 'package:collegeproject/screens/StudentEntry/studentEntry.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -29,6 +30,36 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          ListTile(
+            leading: Image.asset(
+              'assets/images/studenticon.png',
+              height: 40.0,
+            ),
+            title: const Text(
+              'Student Entry',
+            ),
+            onTap: (() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const StudentEntryScreen()));
+            }),
+          ),
+          ListTile(
+            leading: Image.asset(
+              'assets/images/profile.png',
+              height: 40.0,
+            ),
+            title: const Text(
+              'School Entry',
+            ),
+            onTap: (() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const StudentEntryScreen()));
+            }),
           ),
           ListTile(
             leading: Image.asset(

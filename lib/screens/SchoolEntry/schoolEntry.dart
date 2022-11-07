@@ -1,9 +1,9 @@
 import 'package:collegeproject/Widgets/CustomDrawer.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/fireStore/StudentDatabase.dart';
-import '../../utils/constants.dart';
-import '../../utils/showSnackbar.dart';
+import '../../../services/fireStore/StudentDatabase.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/showSnackbar.dart';
 
 class SchoolEntryScreen extends StatefulWidget {
   const SchoolEntryScreen({super.key});

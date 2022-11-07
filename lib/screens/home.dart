@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
-import 'package:collegeproject/SchoolEntry/schoolEntry.dart';
+import 'package:collegeproject/screens/SchoolEntry/schoolEntry.dart';
 import 'package:collegeproject/Widgets/testing.dart';
 import 'package:collegeproject/Widgets/titletext.dart';
 import 'package:collegeproject/screens/Attendence/attendence.dart';
-import 'package:collegeproject/screens/ListOfStudent/addStudents.dart';
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
 import 'package:collegeproject/screens/StudentEntry/studentEntry.dart';
+import 'package:collegeproject/screens/StudentEntry/studentList.dart';
 import 'package:collegeproject/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -216,7 +216,7 @@ class _HomeState extends State<Home> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Testing()));
+                                    builder: (context) => const StudentList()));
                           },
                           child: Container(
                             margin: const EdgeInsets.all(12.0),

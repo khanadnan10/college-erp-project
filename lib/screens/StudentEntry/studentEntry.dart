@@ -130,7 +130,6 @@ class _StudentEntryScreenState extends State<StudentEntryScreen> {
                       color: Colors.grey,
                     ),
                   ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: ((value) {
                     if (value!.isEmpty || value.length > 10) {
                       return 'Required';
