@@ -131,7 +131,7 @@ class _StudentEntryScreenState extends State<StudentEntryScreen> {
                     ),
                   ),
                   validator: ((value) {
-                    if (value!.isEmpty || value.length > 10) {
+                    if (value!.isEmpty || value.length < 10) {
                       return 'Required';
                     } else {
                       return null;

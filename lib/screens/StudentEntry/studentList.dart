@@ -20,7 +20,7 @@ class _StudentListState extends State<StudentList> {
         automaticallyImplyLeading: false,
         title: const Center(
           child: Text(
-            'Student Entry',
+            'Student List',
             style: TextStyle(
               color: Colors.black54,
               fontWeight: FontWeight.w500,
@@ -44,28 +44,22 @@ class _StudentListState extends State<StudentList> {
       ),
       drawer: const CustomDrawer(),
       body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            await Future.delayed(const Duration(
-              milliseconds: 1500,
-            ));
-
-            studentEntry.get();
-          },
-          child: FutureBuilder(
-            future: studentEntry.get(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              }
-              if (snapshot.hasError) {
-                return const TitleText(
-                  text: 'Something went wrong!',
-                );
-              }
-              if (snapshot.connectionState == ConnectionState.done) {
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+        child: FutureBuilder(
+          future: studentEntry.get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return const TitleText(
+                text: 'Something went wrong!',
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
                   child: DataTable(
                     columnSpacing: 12.0,
                     horizontalMargin: 12.0,
@@ -103,19 +97,34 @@ class _StudentListState extends State<StudentList> {
                                     softWrap: true,
                                   )), //Extracting from Map element the value
                                   DataCell(
-                                    Text(element["mobile"]),
+                                    Text(
+                                      element["mobile"],
+                                      softWrap: true,
+                                    ),
                                   ),
                                   DataCell(
-                                    Text(element["school"]),
+                                    Text(
+                                      element["school"],
+                                      softWrap: true,
+                                    ),
                                   ),
                                   DataCell(
-                                    Text(element["state"]),
+                                    Text(
+                                      element["state"],
+                                      softWrap: true,
+                                    ),
                                   ),
                                   DataCell(
-                                    Text(element["city"]),
+                                    Text(
+                                      element["city"],
+                                      softWrap: true,
+                                    ),
                                   ),
                                   DataCell(
-                                    Text(element["stream"]),
+                                    Text(
+                                      element["stream"],
+                                      softWrap: true,
+                                    ),
                                   ),
                                   // DataCell(
                                   //   const Icon(Icons.delete),
@@ -130,11 +139,11 @@ class _StudentListState extends State<StudentList> {
                         )
                         .toList(),
                   ),
-                );
-              }
-              return const CircularProgressIndicator();
-            },
-          ),
+                ),
+              );
+            }
+            return const CircularProgressIndicator();
+          },
         ),
       ),
     );

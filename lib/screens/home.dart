@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collegeproject/screens/SchoolEntry/schoolEntry.dart';
-import 'package:collegeproject/Widgets/testing.dart';
 import 'package:collegeproject/Widgets/titletext.dart';
-import 'package:collegeproject/screens/Attendence/attendence.dart';
-import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
+import 'package:collegeproject/screens/SchoolEntry/schoolList.dart';
 import 'package:collegeproject/screens/StudentEntry/studentEntry.dart';
 import 'package:collegeproject/screens/StudentEntry/studentList.dart';
 import 'package:collegeproject/utils/constants.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../Widgets/CustomDrawer.dart';
-import '../Widgets/CustomCard.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,6 +24,35 @@ class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
   var scaffoldKey = GlobalKey<ScaffoldState>();
   bool isLoggedIn = true;
+
+  final productList = FirebaseFirestore.instance.collection('studentEntry');
+
+  int count = 0;
+
+  Future getData() async {
+    AggregateQuerySnapshot query = await productList.count().get();
+    // debugPrint('The number of products: ${query.count}');
+    setState(() {
+      count = query.count;
+    });
+  }
+
+  // Future getData() async {
+  //   FirebaseFirestore.instance
+  //       .collection('studentEntry')
+  //       .count()
+  //       .get()
+  //       .then((value) {
+  //     var count = 0;
+  //     count = value.count;
+  //   });
+  // }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +108,6 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   icon: Icon(Icons.add),
-      //   backgroundColor: kPrimaryColor,
-      //   label: Text('Add Student'),
-      //   onPressed: () {
-      //     Navigator.push(context,
-      //         MaterialPageRoute(builder: (context) => const AddStudents()));
-      //   },
-      // ),
       drawer: CustomDrawer(),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -151,7 +170,46 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 12.0,
                   ),
-
+                  TitleText(text: 'Dashboard'),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.all(12.0),
+                          height: 100.0,
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xff1745C9),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                count.toString(),
+                                style: TextStyle(
+                                  color: kWhiteColor,
+                                  fontSize: 32.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Total Student',
+                                style: TextStyle(
+                                  color: kWhiteColor,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 10.0,
                   ),
@@ -161,16 +219,6 @@ class _HomeState extends State<Home> {
                   ),
                   Row(
                     children: [
-                      // CustomeCard(
-                      //     height: height,
-                      //     width: width,
-                      //     image: Image.asset(
-                      //       'assets/images/studenticon.png',
-                      //       height: 100.0,
-                      //     ),
-                      //     text: 'Student Entry',
-                      //     color: kRandomColor3,
-                      //     ),
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -228,16 +276,16 @@ class _HomeState extends State<Home> {
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Icon(
-                                  Icons.error,
-                                  size: 50.0,
-                                  color: Color.fromARGB(255, 1, 1, 173),
-                                ),
-                                // Image.asset(
-                                //   'assets/images/profile.png',
-                                //   height: 90.0,
+                              children: [
+                                // Icon(
+                                //   Icons.error,
+                                //   size: 50.0,
+                                //   color: Color.fromARGB(255, 1, 1, 173),
                                 // ),
+                                Image.asset(
+                                  'assets/images/users.png',
+                                  height: 90.0,
+                                ),
                                 Text(
                                   'Student List',
                                   style: TextStyle(
@@ -309,7 +357,7 @@ class _HomeState extends State<Home> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Testing()));
+                                    builder: (context) => const SchoolList()));
                           },
                           child: Container(
                             margin: const EdgeInsets.all(12.0),
@@ -321,16 +369,11 @@ class _HomeState extends State<Home> {
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Icon(
-                                  Icons.error,
-                                  size: 50.0,
-                                  color: Color.fromARGB(255, 173, 1, 1),
+                              children: [
+                                Image.asset(
+                                  'assets/images/schoolList.png',
+                                  height: 90.0,
                                 ),
-                                // Image.asset(
-                                //   'assets/images/profile.png',
-                                //   height: 90.0,
-                                // ),
                                 Text(
                                   'School List',
                                   style: TextStyle(
@@ -351,13 +394,60 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  TitleText(text: 'Extra'),
+
                   const SizedBox(
-                    height: 10.0,
+                    height: 50.0,
                   ),
-                  Row(
-                    children: [
-                      CustomeCard(
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => const ResultScreen()));
+                  //   },
+                  //   child: Container(
+                  //     margin: const EdgeInsets.all(12.0),
+                  //     height: height / 2,
+                  //     width: width,
+                  //     decoration: BoxDecoration(
+                  //       color: kRandomColor3,
+                  //       borderRadius: BorderRadius.circular(8.0),
+                  //     ),
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.all(10.0),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //         children: [
+                  //           Image.asset(
+                  //             'assets/images/growth-graph.png',
+                  //             // height: 190.0,
+                  //           ),
+                  //           Text(
+                  //             'Result',
+                  //             style: const TextStyle(
+                  //                 fontSize: 24.0, overflow: TextOverflow.clip),
+                  //             textAlign: TextAlign.center,
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// dead codes ----------------------------------------------------
+
+/* 
+CustomeCard(
                         height: height,
                         width: width,
                         text: Text(
@@ -409,53 +499,4 @@ class _HomeState extends State<Home> {
                                       const ListOfStudentsScreen()));
                         },
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => const ResultScreen()));
-                  //   },
-                  //   child: Container(
-                  //     margin: const EdgeInsets.all(12.0),
-                  //     height: height / 2,
-                  //     width: width,
-                  //     decoration: BoxDecoration(
-                  //       color: kRandomColor3,
-                  //       borderRadius: BorderRadius.circular(8.0),
-                  //     ),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(10.0),
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //         children: [
-                  //           Image.asset(
-                  //             'assets/images/growth-graph.png',
-                  //             // height: 190.0,
-                  //           ),
-                  //           Text(
-                  //             'Result',
-                  //             style: const TextStyle(
-                  //                 fontSize: 24.0, overflow: TextOverflow.clip),
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+*/

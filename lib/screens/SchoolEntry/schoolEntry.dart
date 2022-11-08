@@ -121,7 +121,6 @@ class _SchoolEntryScreenState extends State<SchoolEntryScreen> {
 
                 TextFormField(
                   controller: stateController,
-                  keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(borderSide: BorderSide()),
                     hintText: 'Enter State',
