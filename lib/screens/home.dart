@@ -31,22 +31,10 @@ class _HomeState extends State<Home> {
 
   Future getData() async {
     AggregateQuerySnapshot query = await productList.count().get();
-    // debugPrint('The number of products: ${query.count}');
     setState(() {
       count = query.count;
     });
   }
-
-  // Future getData() async {
-  //   FirebaseFirestore.instance
-  //       .collection('studentEntry')
-  //       .count()
-  //       .get()
-  //       .then((value) {
-  //     var count = 0;
-  //     count = value.count;
-  //   });
-  // }
 
   @override
   void initState() {
@@ -108,7 +96,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(
@@ -170,7 +158,7 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 12.0,
                   ),
-                  TitleText(text: 'Dashboard'),
+                  TitleText(text: 'Report'),
                   const SizedBox(
                     height: 10.0,
                   ),
@@ -185,23 +173,53 @@ class _HomeState extends State<Home> {
                             color: Color(0xff1745C9),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                count.toString(),
-                                style: TextStyle(
-                                  color: kWhiteColor,
-                                  fontSize: 32.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    count.toString(),
+                                    style: TextStyle(
+                                      color: kWhiteColor,
+                                      fontSize: 32.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Total Student',
+                                    style: TextStyle(
+                                      color: kWhiteColor,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Total Student',
-                                style: TextStyle(
-                                  color: kWhiteColor,
-                                  fontSize: 16.0,
+                              SizedBox(
+                                width: 50.0,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          fullscreenDialog: true,
+                                          builder: (context) => const Home()));
+                                },
+                                child: Container(
+                                  height: 40.0,
+                                  width: 40.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                      color:
+                                          Color.fromARGB(255, 195, 210, 249)),
+                                  child: Icon(
+                                    Icons.refresh,
+                                    color: Color(0xff1745C9),
+                                  ),
                                 ),
                               ),
                             ],

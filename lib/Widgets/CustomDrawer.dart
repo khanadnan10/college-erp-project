@@ -3,7 +3,10 @@
 import 'package:collegeproject/screens/Attendence/attendence.dart';
 import 'package:collegeproject/screens/ListOfStudent/listofstudent.dart';
 import 'package:collegeproject/screens/Result/result.dart';
+import 'package:collegeproject/screens/SchoolEntry/schoolEntry.dart';
+import 'package:collegeproject/screens/SchoolEntry/schoolList.dart';
 import 'package:collegeproject/screens/StudentEntry/studentEntry.dart';
+import 'package:collegeproject/screens/StudentEntry/studentList.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,15 +21,26 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
               children: [
-                Text(
-                  DateFormat.yMMMMd('en_US').format(DateTime.now()),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                  ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      child: Image.asset(
+                        'assets/images/nriLogo.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    const Text(
+                      'Smart Data',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -34,7 +48,7 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Image.asset(
               'assets/images/studenticon.png',
-              height: 40.0,
+              height: 30.0,
             ),
             title: const Text(
               'Student Entry',
@@ -48,8 +62,22 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Image.asset(
+              'assets/images/users.png',
+              fit: BoxFit.cover,
+              height: 30.0,
+            ),
+            title: const Text(
+              'Student List',
+            ),
+            onTap: (() {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const StudentList()));
+            }),
+          ),
+          ListTile(
+            leading: Image.asset(
               'assets/images/profile.png',
-              height: 40.0,
+              height: 30.0,
             ),
             title: const Text(
               'School Entry',
@@ -58,53 +86,23 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const StudentEntryScreen()));
+                      builder: (context) => const SchoolEntryScreen()));
             }),
           ),
           ListTile(
             leading: Image.asset(
-              'assets/images/attendence.png',
+              'assets/images/schoolList.png',
               fit: BoxFit.cover,
-              height: 50.0,
+              height: 30.0,
             ),
             title: const Text(
-              'Attendence',
-            ),
-            onTap: (() {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AttendenceScreen()));
-            }),
-          ),
-          ListTile(
-            leading: Image.asset(
-              'assets/images/contract.png',
-              fit: BoxFit.cover,
-              height: 50.0,
-            ),
-            title: const Text(
-              'List Of Students',
+              'School List',
             ),
             onTap: (() {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ListOfStudentsScreen()));
-            }),
-          ),
-          ListTile(
-            leading: Image.asset(
-              'assets/images/growth-graph.png',
-              fit: BoxFit.cover,
-              height: 50.0,
-            ),
-            title: const Text(
-              'Result',
-            ),
-            onTap: (() {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ResultScreen()));
+                      builder: (context) => const SchoolList()));
             }),
           ),
         ],
